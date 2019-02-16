@@ -5,55 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace ConsoleApp2
+namespace ConsoleApp4
 {
     class Program
     {
-        static bool isPrime(int n)//method for checking numbers on prime
-        {
-            if (n < 2) return false;
-            for (int i = 2; i * i <= n; i++)
-            {
-                if (n % i == 0) return false;
-            }
-            return true;
-        }
         static void Main(string[] args)
         {
-            FileStream fs1 = new FileStream(@"C:\Users\user\source\repos\Problem3\Problem3\TextFile3.txt", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs1);
-            //to read text file in way
-            String s = sr.ReadToEnd();
-            string[] ss = s.Split();
-            int[] a = new int[ss.Length];
-            for (int i = 0; i < a.Length; i++)
-            {
-                a[i] = int.Parse(ss[i]);//in console read elements of array
-            }
-
-            FileStream fs2 = new FileStream(@"C:\Users\user\source\repos\Problem3\Problem3\TextFile4.txt", FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs2);
-            string f = "";
-            for (int i = 0; i < a.Length; i++)//checking numbers for prime
-            {
-                if (isPrime(a[i]))
-                {
-                    f += a[i] + " ";
-                }
-            }
-            sw.Write(f);
-            //write  answer to the new text file  
-
-            Console.ReadKey();
-
-            sw.Close();
-            fs2.Close();
-            sr.Close();
-            fs1.Close();
-            //close all floders
+            //created txt for check
+            string s = @"TextFile4.txt";
+            //created file
+            var c = File.Create(@"C:\Users\user\source\repos\ConsoleApp4\ConsoleApp4\Create\" + s);
+            c.Close();
+            //copied first file and deleted first file
+            File.Copy(@"C:\Users\user\source\repos\ConsoleApp4\ConsoleApp4\Create\" + s, @"C:\Users\user\source\repos\ConsoleApp4\ConsoleApp4\Create1\" + s);
+            File.Delete(@"C:\Users\user\source\repos\ConsoleApp4\ConsoleApp4\Create\" + s);
 
         }
     }
 }
-
-   
